@@ -1,2 +1,109 @@
 <p>ABHINAV</p>
 <br> PATIL </br>
+
+
+1. OPEN TERMINAL  
+ 
+cd Desktop 
+mkdir basic-app 
+cd basic-app 
+code . 
+ 
+2. VS CODE WILL BE OPENED AUTOMATICALLY, THEN OPEN NEW TERMINAL IN VS 
+CODE  
+ 
+npm init 
+(add description if want , then yes) 
+ 
+3. package.json FILE WILL BE CREATED AUTOMATICALLY THEN , CREATE AN EMPTY 
+FILE WITH NAME index.js 
+ 
+4. AGAIN OPEN TERMINAL 
+ 
+npm i express 
+(node_modules) will be created  
+ 
+5. WRITE IN index.js FILE 
+ 
+const express = require(“express”); 
+const app = express(); 
+ 
+app.get(“/”,(req,res)=>{ 
+res.json([ 
+      { 
+         id:1, 
+         name:”abhinav”, 
+         age:20 
+       }, 
+      { 
+         id:2, 
+         name:”abhishek”, 
+         age:22 
+       }, 
+      { 
+         id:3, 
+         name:”abhijeet”, 
+         age:24 
+       }, 
+      { 
+         id:4, 
+         name:”abhiraj”, 
+         age:26 
+       }, 
+]) 
+}); 
+app.listen(5500,()=>{ 
+         console.log(“app is running on 5500 port”) 
+}) 
+ 
+6. RUN THE FILE IN TERMINAL USING  
+ 
+node index.js 
+ 
+7. OPEN CHROME AND SEARCH FOR  
+ 
+localhost:5500 
+  
+ 
+➢ CREATING DOCKER FILE AND MAKING IT’S IMAGE 
+ 
+1. CREATE NEW FILE WITH THE NAME & INSTALL DOCKER EXTENSION IN VS CODE 
+ 
+dockerfile      
+ 
+2. OR ELSE IN TERMINAL WRITE  
+ 
+touch dockerfile 
+ 
+3. WRITE IN dockerfile 
+ 
+FROM node:latest 
+COPY . . 
+RUN npm install  
+EXPOSE 5500 
+CMD [“node”,”index.js”] 
+ 
+4. OPEN TERMINAL  
+docker build -t basic-app . 
+5. THE IMAGE WILL BE BUILT IN DOCKER DESKTOP , IF YOU WANT TO CHECK THE 
+IMAGES BUILT , OPEN TERMINAL  
+docker images 
+➢ RUNNING THE IMAGES WITH THE HELP OF CONTAINERS 
+1. 
+WE CAN RUN THE IMAGE DIRECTLY UNDER IMAGE TAB IN DOCKER DESKTOP , BY 
+ASSIGNING THE CONTAINER NAME & ASSIGNING THE PORT AS 5500  
+2. ALSO BY ASSIGNING PORT VALUE AS 0 , IT WILL GENERATE RANDOM PORT NO 
+3. ANOTHER WAY IS USING TERMINAL 
+docker run –name basic-app-container -p 5500:5500 basic-app  
+➢ DELETION OF IMAGES & CONTAINERS 
+1. OPEN TERMINAL  
+FOR UNUSED : docker image rm basic-app 
+FOR IN-USE : docker image rm basic-app -f 
+2. TO DELETE IN-USE IMAGES THERE IS ANOTHER WAY I.E., BY DELETING THE 
+CONTAINER 
+docker ps -a 
+docker container rm basic-app 
+3. TO DELETE ALL CONTAINERS AT ONCE 
+docker system prune -a
+
+
